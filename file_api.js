@@ -4,6 +4,7 @@ const fs = require("fs");
 const router = express.Router();
 
 router.get("/", (req, res, next) => {
+  // get all file names
   // send error if no file exist
   // else send list of all files
   const files_path = "files";
@@ -23,8 +24,9 @@ router.get("/", (req, res, next) => {
 });
 
 router.get("/file/:filename", (req, res) => {
-  // send error if file doesn't exist
   // get file contents
+  // send error if file doesn't exist
+  // send contents of file
   const { filename } = req.params;
   const file_path = `./files/${filename}`;
   try {
@@ -83,6 +85,7 @@ router.put("/rename/:filename", (req, res, next) => {
 router.put("/update/:filename", (req, res) => {
   // update file contents
   // error if file doesn't exist
+  // append or replace content based on action which comes in body
   const { filename } = req.params;
   const { action, content } = req.body;
   const file_path = `./files/${filename}`;
